@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "start:server": "nodemon ./dist/server.js",
+    "start:dev": "webpack -p --config webpack.config.dev.js --mode development --watch",
+    "build:dev": "npm run build:client:dev; npm run build:server:dev",
+    "build:client:dev": "webpack -p --config webpack.config.client.js --mode development",
+    "build:server:dev": "webpack -p --config webpack.config.server.js --mode development",
+    "build:prod": "npm run build:client:prod && npm run build:server:prod",
+    "build:client:prod": "webpack -p --config webpack.config.client.js --mode production",
+    "build:server:prod": "webpack -p --config webpack.config.server.js --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,19 +24,36 @@
   },
   "homepage": "https://github.com/BohWebo/tg#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "latest",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "serialize-javascript": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^6.0.2",
     "css-loader": "^4.3.0",
     "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.12.0",
+    "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-livereload-plugin": "^2.3.0",
+    "webpack-merge": "^5.2.0",
+    "webpack-node-externals": "^2.5.2",
+    "webpack-stats-plugin": "^0.3.2"
   }
 }
