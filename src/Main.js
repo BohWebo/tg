@@ -1,7 +1,11 @@
 import React from 'react';
-import Navigation from './Navigation';
 
 
 export default () =>
-    <Navigation/>;
+    <div className="root-layout">
+        <header>header</header>
+        <aside>side</aside>
+        <main>main</main>
+        <footer>footer</footer>
+    </div>;
 

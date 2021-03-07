@@ -4,8 +4,8 @@ const {merge} = require('webpack-merge');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {StatsWriterPlugin} = require('webpack-stats-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const baseConfig = require('./webpack.config.base');
 
@@ -19,8 +19,13 @@ module.exports = merge(baseConfig, {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader']
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]'
+                    }
+                }]
             }
         ]
     },
@@ -49,13 +54,27 @@ module.exports = merge(baseConfig, {
         new StatsWriterPlugin({
             stats: {
                 all: false,
-                assets: true
+                assets: true,
+                excludeAssets: (assetName) => console.log('assetName:', assetName, !/\.css$/.test(assetName)) || !/\.css$/.test(assetName)
             }
         }),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: 'styles.[chunkhash].css'
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.join(__dirname, 'src', 'assets'),
+                    to: path.join(__dirname, 'dist', 'public')
+                },
+                {
+                    from: path.join(__dirname, 'manifest.json'),
+                    to: path.join(__dirname, 'dist', 'public'),
+                    flatten: true
+                },
+                {
+                    from: path.join(__dirname, 'src/**/*.css'),
+                    to: path.join(__dirname, 'dist', 'public'),
+                    flatten: true
+                }
+            ]
         })
     ],
 

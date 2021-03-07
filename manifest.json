@@ -1,0 +1,50 @@
+{
+  "name": "Tea Guide",
+  "start_url": "/",
+  "short_name": "TG",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff",
+  "theme_color": "#3f51b5",
+  "dir": "ltr",
+  "descriptions": "Tea world travel guide",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "./icons/tea16x16.png",
+      "type": "image/png",
+      "size": "16x16"
+    },
+    {
+      "src": "./icons/tea24x24.png",
+      "type": "image/png",
+      "size": "24x24"
+    },
+    {
+      "src": "./icons/tea32x32.png",
+      "type": "image/png",
+      "size": "32x32"
+    },
+    {
+      "src": "./icons/tea64x64.png",
+      "type": "image/png",
+      "size": "64x64"
+    },
+    {
+      "src": "./icons/tea128x128.png,",
+      "type": "image/png",
+      "size": "128x128"
+    },
+    {
+      "src": "./icons/tea256x256.png,",
+      "type": "image/png",
+      "size": "256x256"
+    },
+    {
+      "src": "./icons/tea512x512.png",
+      "type": "image/png",
+      "size": "512x512"
+    }
+  ]
+}

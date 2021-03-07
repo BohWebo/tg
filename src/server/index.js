@@ -1,7 +1,5 @@
 import http from 'http';
-
 import router from './router';
-import '@babel/polyfill';
 
 http
     .createServer(router)
